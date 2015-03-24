@@ -1,0 +1,59 @@
+{%extends '__l_base.html' %}
+
+
+-block 'main-col'
+
+        .col-md-4
+
+        .col-md-4.col-xs-12
+            .row
+                .col-xs-12.text-center
+                    %h3.text-center Login - Kundenportal
+            -if form.errors
+                .alert.alert-danger
+                    Benutzername oder Password nicht gefunden.
+            .well
+                %form{method:'post',action:'{% url "django.contrib.auth.views.login" %}'}
+                    {% csrf_token %}
+
+                    %label
+                        {{ form.username.label }}
+                    %input.username.form-control{tpye:'text', id:'{{form.username.id_for_label}}', name:'{{ form.username.html_name }}', placeholder:'{{form.username.label}}'}
+
+                    %label
+                        {{ form.password.label }}
+                    %input.form-control{type:'password', id:'{{form.password.id_for_label}}', name:'{{ form.password.html_name }}', placeholder:'{{form.password.label}}'}
+
+                    %br
+                    %input{type:'hidden', name:'next', value:'{{next}}'}
+
+
+
+                    %button.form-control.btn.btn-primary
+                        Login
+
+
+            /%a.pull-right.lost-pw{href:'#'}
+            /    Password vergessen
+
+
+            .row
+                .col-xs-12
+                    %a.text-center{href:'{%url "kb_register" %}'}
+                        Hier registrieren.
+
+
+        .col-md-4
+
+
+    :javascript
+        $(document).ready(function(){
+            $('.username').focus()
+
+        });
+
+- block 'footer'
+    .row.footer
+        .col-xs-2.col-xs-offset-10
+            %a{href:"{%url 'imprint' %}", target:'_blank'}
+                Impressum
