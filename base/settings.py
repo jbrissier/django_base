@@ -76,6 +76,8 @@ STATICFILES_DIRS = (
     os.path.join(os.path.dirname(__file__), 'static'),
 )
 
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
