@@ -1,0 +1,12 @@
+{% extends "__base.html" %}
+{% load cms_tags %}
+
+
+-block 'title'
+    {% page_attribute "page_title" %}
+
+
+-block 'content'
+    .row
+        .col-xs-4
+            -placeholder 'template_1_content'

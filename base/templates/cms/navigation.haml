@@ -1,0 +1,49 @@
+{% load menu_tags staticfiles %}
+.navbar.navbar-default
+    .container-fluid
+
+        / mobile first navigation
+        .navbar-header
+            %button.navbar-toggle.collapsed{data-toggle:"collapse", data-target:"#main-navigation"}
+                %span.sr-only Toggle nagigation
+                %span.icon-bar
+                %span.icon-bar
+                %span.icon-bar
+            %a.navbar-brand{href:'#'}
+                %img{alt:'portal', src:"{%static 'img/logo.jpg'%}" }Portal
+
+
+
+
+        #main-navigation.collapse.navbar-collapse
+            %ul.nav.navbar-nav
+
+                {% show_menu 0 1 100 0 %}
+
+
+            %ul.nav.navbar-nav.navbar-right
+                -if user.is_superuser or user.is_staff
+                    %li
+                        %a{href:"/admin"}
+                            %i.icon-th-large
+                            Admin
+                            Admin
+
+                -if user.is_authenticated
+                    %li
+                        %a#help{href:"#"}
+                            %i.icon-plus-sign
+                            Hilfe / Fehler
+
+                    %li
+                        %a{href:"/accounts/logout"}
+                            %i.icon-off
+                            Abmelden
+                            %span{style:"font-size:0.7em"}
+                                ({{user.first_name}} {{user.last_name}})
+                -else
+                    %li
+                        %a{href:"/accounts/login?next={{request.path}}",style:"color:red"}
+                            %i.icon-user
+                            Anmelden
+
