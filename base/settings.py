@@ -34,7 +34,11 @@ TIME_ZONE = 'Europe/Berlin'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'de-de'
+LANGUAGE_CODE = 'en'
+
+LANGUAGES = [
+        ('en', 'English'),
+]
 
 SITE_ID = 1
 
@@ -98,9 +102,11 @@ TEMPLATE_LOADERS = (
     'hamlpy.template.loaders.HamlPyAppDirectoriesLoader',
     # django.template.loaders.eggs.Loader'
 )
-
+CMS_TEMPLATES = (
+        ('cms/home.html', 'Home'),
+)
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Put strings here, like "/hs',ome/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(os.path.dirname(__file__), 'templates'),
@@ -113,9 +119,12 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    # Uncomment the next line for simple clickjacking protection:
-    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'cms.middleware.user.CurrentUserMiddleware',
+    'cms.middleware.page.CurrentPageMiddleware',
+    'cms.middleware.toolbar.ToolbarMiddleware',
+    'cms.middleware.language.LanguageCookieMiddleware',
 )
+
 
 ROOT_URLCONF = 'base.urls'
 
@@ -127,6 +136,17 @@ TINYMCE_DEFAULT_CONFIG = {
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'base.wsgi.application'
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+        'django.contrib.auth.context_processors.auth',
+        'django.contrib.messages.context_processors.messages',
+        'django.core.context_processors.i18n',
+        'django.core.context_processors.request',
+        'django.core.context_processors.media',
+        'django.core.context_processors.static',
+        'sekizai.context_processors.sekizai',
+        'cms.context_processors.cms_settings',
+)
+
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
@@ -134,6 +154,7 @@ TEMPLATE_DIRS = (
 )
 INTERNAL_APPS = []
 
+CMS_PLUGINS = ['djangocms_text_ckeditor']
 EXTERNAL_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -141,7 +162,10 @@ EXTERNAL_APPS = [
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'cms',
+    'treebeard',
+    'sekizai',
+    'menus',
     'tinymce',
     'base',
     'compressor',
@@ -151,7 +175,7 @@ EXTERNAL_APPS = [
     # 'django.contrib.admindocs',
     'debug_toolbar',
 ]
-INSTALLED_APPS = EXTERNAL_APPS + INTERNAL_APPS
+INSTALLED_APPS = EXTERNAL_APPS + CMS_PLUGINS + INTERNAL_APPS
 
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
