@@ -1,19 +1,18 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import  include, url
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 from django.views.generic import TemplateView
+from django.contrib.auth.views import login
 admin.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='home.html')),
 
 
     # login / logout
-    url(r'^accounts/login/$', 'django.contrib.auth.views.login', name="login"),
-    url(r'^accounts/logout/$', 'django.contrib.auth.views.login', name="logout"),
-
-
+    url(r'^accounts/login/$', login, name="login"),
+    url(r'^accounts/logout/$', login, name="logout"),
 
     # admin page
     url(r'^admin/', include(admin.site.urls))
-)
+]

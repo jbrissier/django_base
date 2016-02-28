@@ -2,7 +2,7 @@ project = base
 app?=
 
 ev = env
-env= env/bin/activate
+env = env/bin/activate
 
 dumpdata:
 	python2.7 ./manage.py dumpdata --indent 4 --natural auth --exclude auth.permission > $(project)/fixtures/bootstrap_auth.json
