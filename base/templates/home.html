@@ -1,0 +1,29 @@
+{%extends '__l_base.html' %}
+{% block 'title' %}
+    {{block.super}} | Sample Page
+
+{% endblock %}
+<!-- example usage -->
+{% block 'main-col' %}
+    <div class='well'>
+        <h1>Hello Django</h1>
+
+
+    </div>
+{% endblock %}
+{% block 'right-col' %}
+    <div class='well'>
+        <h1>
+            Test
+
+
+        </h1>
+    </div>
+{% endblock %}
+{% block 'footer' %}
+    <div class='well'>
+        <p>
+            This is a base view
+        </p>
+    </div>
+{% endblock %}
