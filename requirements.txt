@@ -1,4 +1,4 @@
 Django==1.9.2
 
 django-debug-toolbar
-hamlpy
+-e git://github.com/jbrissier/HamlPy.git#egg=hamlpy
