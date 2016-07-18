@@ -5,8 +5,7 @@ It is not ready for production
 
 
 ## Features
- - Django 1.7
- - Compressor plugin
+ - Django 1.9
  - Haml support
 
 
