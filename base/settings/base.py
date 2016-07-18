@@ -82,12 +82,9 @@ TEMPLATES = [
         'DIRS': [
             # insert your TEMPLATE_DIRS here
         ],
-      'OPTIONS': {
 
-            'loaders': [
-                'hamlpy.template.loaders.HamlPyFilesystemLoader',
-                'hamlpy.template.loaders.HamlPyAppDirectoriesLoader',
-            ],
+        'APP_DIRS': False,
+        'OPTIONS': {
 
             'context_processors': [
                 # Insert your TEMPLATE_CONTEXT_PROCESSORS here or use this
@@ -100,6 +97,12 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'loaders':[
+                'hamlpy.template.loaders.HamlPyFilesystemLoader',
+                'hamlpy.template.loaders.HamlPyAppDirectoriesLoader',
+                'django.template.loaders.app_directories.Loader',
+                'django.template.loaders.filesystem.Loader',
+            ]
         },
     },
 ]
