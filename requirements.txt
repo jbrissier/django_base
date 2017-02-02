@@ -1,4 +1,4 @@
 Django==1.10.5
 
-django-debug-toolbar==1.5.0
+django-debug-toolbar==1.6.0
 #-e git://github.com/jbrissier/HamlPy.git#egg=hamlpy
