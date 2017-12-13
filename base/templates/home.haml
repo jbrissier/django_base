@@ -1,4 +1,4 @@
-{%extends '__l_base.html' %}
+{%extends '__l_base.haml' %}
 -block 'title'
     {{block.super}} | Sample Page
 
@@ -6,7 +6,7 @@
 -block 'main-col'
     .well
         %h1 Hello Django
-
+        %p Works with haml
 
 -block 'right-col'
     .well

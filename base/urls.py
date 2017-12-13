@@ -6,7 +6,7 @@ from django.contrib.auth.views import login
 admin.autodiscover()
 
 urlpatterns = [
-    url(r'^$', TemplateView.as_view(template_name='home.html')),
+    url(r'^$', TemplateView.as_view(template_name='home.haml')),
 
 
     # login / logout
@@ -14,5 +14,5 @@ urlpatterns = [
     url(r'^accounts/logout/$', login, name="logout"),
 
     # admin page
-    url(r'^admin/', include(admin.site.urls))
+    url(r'^admin/', admin.site.urls)
 ]
